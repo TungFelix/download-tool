@@ -1,0 +1,47 @@
+<%= form_with(model: item, local: true) do |form| %>
+  <% if item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :wordnet_id %>
+    <%= form.text_field :wordnet_id, id: :item_wordnet_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :file_path %>
+    <%= form.text_field :file_path, id: :item_file_path %>
+  </div>
+
+  <div class="field">
+    <%= form.label :source_id %>
+    <%= form.text_field :source_id, id: :item_source_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.text_field :type, id: :item_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :retried_time %>
+    <%= form.text_field :retried_time, id: :item_retried_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item_status %>
+    <%= form.text_field :item_status, id: :item_item_status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

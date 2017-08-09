@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Wnid:</strong>
+  <%= @datum.wnid %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @datum.category %>
+</p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @datum.source %>
+</p>
+
+<p>
+  <strong>Downloaded:</strong>
+  <%= @datum.downloaded %>
+</p>
+
+<p>
+  <strong>Path:</strong>
+  <%= @datum.path %>
+</p>
+
+<%= link_to 'Edit', edit_datum_path(@datum) %> |
+<%= link_to 'Back', data_path %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  wordnet_id: MyString
+  file_path: MyString
+  source_id: 
+  type: 
+  retried_time: 
+  item_status: 
+
+two:
+  wordnet_id: MyString
+  file_path: MyString
+  source_id: 
+  type: 
+  retried_time: 
+  item_status: 

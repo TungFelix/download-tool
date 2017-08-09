@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  wnid: MyString
+  category: MyString
+  source: MyString
+  downloaded: false
+  path: MyString
+
+two:
+  wnid: MyString
+  category: MyString
+  source: MyString
+  downloaded: false
+  path: MyString

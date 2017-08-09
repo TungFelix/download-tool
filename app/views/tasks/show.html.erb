@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Session:</strong>
+  <%= @task.session_id %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @task.item_id %>
+</p>
+
+<p>
+  <strong>Task status:</strong>
+  <%= @task.task_status %>
+</p>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Wordnet:</strong>
+  <%= @item.wordnet_id %>
+</p>
+
+<p>
+  <strong>File path:</strong>
+  <%= @item.file_path %>
+</p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @item.source_id %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @item.type %>
+</p>
+
+<p>
+  <strong>Retried time:</strong>
+  <%= @item.retried_time %>
+</p>
+
+<p>
+  <strong>Item status:</strong>
+  <%= @item.item_status %>
+</p>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>

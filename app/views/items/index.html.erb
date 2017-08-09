@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Wordnet</th>
+      <th>File path</th>
+      <th>Source</th>
+      <th>Type</th>
+      <th>Retried time</th>
+      <th>Item status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.wordnet_id %></td>
+        <td><%= item.file_path %></td>
+        <td><%= item.source_id %></td>
+        <td><%= item.type %></td>
+        <td><%= item.retried_time %></td>
+        <td><%= item.item_status %></td>
+        <td><%= link_to 'Show', item %></td>
+        <td><%= link_to 'Edit', edit_item_path(item) %></td>
+        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Item', new_item_path %>
