@@ -5,22 +5,26 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version: 2.3.2
+
+* Rails version: 5.1.2
 
 * System dependencies
 
 * Configuration
 
 * Database creation
+rake db:create
+rake db:migrate
 
 * Database initialization
+rails runner script/add_datasource.rb
 
-* How to run the test suite
+* How to run
+rails runner script/download.rb help
 
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
 
 * ...
-
-Run: rails runner script/download.rb help
