@@ -56,7 +56,7 @@ opt_parser = OptionParser.new do |opt|
   opt.separator  ""
   opt.separator  "Options"
 
-  opt.on("--folder S","where you save data") do |s|
+  opt.on("--folder PATH","where you save data") do |s|
   	options[:folder] = s
   end
 
@@ -64,11 +64,11 @@ opt_parser = OptionParser.new do |opt|
     options[:source_id] = n
   end
 
-  opt.on("--url S","download from URL(s)") do |s|
+  opt.on("--url LINK","link download") do |s|
   	options[:urls] = s
   end
 
-  opt.on("--wordnetid S","which wordnet_id you want to download") do |s|
+  opt.on("--wordnet ID","which wordnet_id you want to download") do |s|
     options[:wordnet_id] = s
   end
 
