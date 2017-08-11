@@ -3,19 +3,34 @@ require 'open-uri'
 require 'optparse'
 
 def download_image(url, params)
-  file_path = params[:folder] + "/" + url.split('/').last
-  open(url) do |u|
-    File.open(file_path, 'wb') { |f| f.write(u.read) }
+  begin
+  	file_path = params[:folder] + "/" + url.split('/').last
+    open(url) do |u|
+      File.open(file_path, 'wb') { |f| f.write(u.read) }
+    end
+  rescue
+  	@retry_times += 1
+  	if @retry_times < 4
+  	  puts "Retry to download item: #{params[:wordnet_id]}"
+  	  retry
+  	end
+  	puts "File #{params[:wordnet_id]} not found"
+  	@fail_count += 1
+  	return
   end
-  @value_array += [[params[:wordnet_id], file_path, params[:source_id], params[:item_type], 0, 1]]
-  @count += 1
+  
+  @value_array += [[params[:wordnet_id], file_path, params[:source_id], params[:item_type], @retry_times, 1]]
+  @success_count += 1
+  #Task.create! session_id: session.id, item_id: 0, task_status: 1
 end
 
 def start(params)
-  @count = 0
+  session = Session.create! source_id: params[:source_id], session_status: 1
+  @success_count = 0
+  @fail_count = 0
   urls = [
     'http://petsfans.com/wp-content/uploads/2014/11/edfsaf.jpg',
-    'http://dailynewsdig.com/wp-content/uploads/2012/06/funny-cats.jpg',
+    'http://dailnewsdig.com/wp-content/uploads/2012/06/funny-cats.jpg',
     'https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg'
   ]
   #file_path = '/home/a170424/TrainingData/'
@@ -23,25 +38,16 @@ def start(params)
 
   urls.each_slice(1000) do |slice|
     @value_array = []
-    slice.each { |url| download_image(url, params) }
+    slice.each do |url|
+      @retry_times = 0
+      download_image(url, params)
+    end
     Item.import columns, @value_array
-    p "Downloaded #{@count} items" 
+    p "Downloaded items: #{@success_count}"
+    p "Fail items: #{@fail_count}"
   end
 end
-=begin
-def create_session(id, status)
-  Session.create (
-    source_id: id,
-    session_status: status
-  	)
-end
 
-def create_task(params)
-  task_column = [:session_id, :item_id, :task_status]
-  task_value = [[session_id, item_id, task_status]]
-  Task.import task_column, task_value
-end
-=end
 #-----------------------------------------------------------------------------------------
 
 options = {}
@@ -68,7 +74,7 @@ opt_parser = OptionParser.new do |opt|
   	options[:urls] = s
   end
 
-  opt.on("--wordnet ID","which wordnet_id you want to download") do |s|
+  opt.on("--wordnetid ID","which wordnet_id you want to download") do |s|
     options[:wordnet_id] = s
   end
 
